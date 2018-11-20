@@ -1,8 +1,8 @@
-dbus-cpp (5.0.1+ubports) bionic; urgency=medium
+dbus-cpp (5.0.1+gemian) stretch; urgency=medium
 
-  * Imported to UBports
+  * Building for Gemian
 
- -- UBports auto importer <infra@ubports.com>  Mon, 09 Apr 2018 14:49:45 +0200
+ -- Adam Boardman <adamboardman@gmail.com>  Tue, 20 Nov 2018 20:18:45 +0000
 
 dbus-cpp (5.0.0+18.04.20171031-0ubuntu1) bionic; urgency=medium
 

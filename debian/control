@@ -5,7 +5,8 @@
 #
 Source: dbus-cpp
 Priority: optional
-Maintainer: Thomas Voß <thomas.voss@ubuntu.com>
+Maintainer: Adam Boardman <adamboardman@gmail.com>
+XSBC-Original-Maintainer: Thomas Voß <thomas.voss@ubuntu.com>
 Build-Depends: cmake,
                cmake-extras,
                dbus,
@@ -23,11 +24,8 @@ Build-Depends: cmake,
                lsb-release,
 Standards-Version: 3.9.5
 Section: libs
-Homepage: http://launchpad.net/dbus-cpp
-# If you aren't a member of ~phablet-team but need to upload packaging changes,
-# just go ahead.  ~phablet-team will notice and sync up the code again.
-Vcs-Bzr: https://code.launchpad.net/~phablet-team/dbus-cpp/trunk
-Vcs-Browser: http://bazaar.launchpad.net/~phablet-team/dbus-cpp/trunk/files
+Homepage: https://github.com/gemian/dbus-cpp
+Vcs-Git: https://github.com/gemian/dbus-cpp.git
 
 Package: libdbus-cpp5
 Section: libdevel
