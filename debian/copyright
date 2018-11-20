@@ -1,9 +1,13 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: dbus-cpp
-Source: http://launchpad.net/dbus-cpp
+Source: https://launchpad.net/dbus-cpp
+
+Files: *
+Copyright: © 2012, 2013, 2014 Canonical Ltd.
+License: LGPL-3
 
 Files: cmake/*
-Copyright: 2010-2011 Johannes Wienke
+Copyright: © 2010-2011 Johannes Wienke <jwienke@techfak.uni-bielefeld.de>
 License: GPL-2+
  This program is free software; you can redistribute it
  and/or modify it under the terms of the GNU General
@@ -19,8 +23,13 @@ License: GPL-2+
  License version 2 can be found in the file
  `/usr/share/common-licenses/GPL-2'.
 
-Files: *
-Copyright: 2013 Canonical Ltd.
+Files: debian/*
+Copyright:
+ © 2018 Chris Lamb <lamby@debian.org>
+ © Thomas Voß <thomas.voss@canonical.com>
+ © Łukasz Zemczak <lukasz.zemczak@canonical.com>
+License: LGPL-3
+
 License: LGPL-3
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU Lesser General Public License version 3 as
