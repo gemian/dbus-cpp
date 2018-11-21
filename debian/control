@@ -3,6 +3,7 @@ Priority: optional
 Maintainer: Adam Boardman <adamboardman@gmail.com>
 XSBC-Original-Maintainer: Thomas Voß <thomas.voss@ubuntu.com>
 Build-Depends: cmake,
+               cmake-extras,
                dbus,
                debhelper (>= 9),
                doxygen,
