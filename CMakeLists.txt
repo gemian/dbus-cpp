@@ -57,7 +57,6 @@ pkg_check_modules(PROCESS_CPP process-cpp)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 include(cmake/EnableCoverageReport.cmake)
-include(cmake/PrePush.cmake)
 
 include(GNUInstallDirs)
 
