@@ -26,7 +26,7 @@ namespace boost
 {
 namespace asio
 {
-class io_service;
+class io_context;
 }
 }
 
@@ -37,7 +37,7 @@ namespace dbus
 namespace asio
 {
 ORG_FREEDESKTOP_DBUS_DLL_PUBLIC Executor::Ptr make_executor(const Bus::Ptr& bus);
-ORG_FREEDESKTOP_DBUS_DLL_PUBLIC Executor::Ptr make_executor(const Bus::Ptr& bus, boost::asio::io_service& io);
+ORG_FREEDESKTOP_DBUS_DLL_PUBLIC Executor::Ptr make_executor(const Bus::Ptr& bus, boost::asio::io_context& io);
 }
 }
 }

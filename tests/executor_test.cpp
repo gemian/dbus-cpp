@@ -58,7 +58,7 @@ struct ChaosMonkey
 struct Executor : public core::dbus::testing::Fixture
 {
  protected:
-    boost::asio::io_service io_service;
+    boost::asio::io_context io_context;
 };
 
 auto session_bus_config_file =
@@ -72,13 +72,13 @@ auto system_bus_config_file =
 
 TEST_F(Executor, ThrowsOnConstructionFromNullBus)
 {
-    EXPECT_ANY_THROW(core::dbus::asio::make_executor(core::dbus::Bus::Ptr{}, io_service));
+    EXPECT_ANY_THROW(core::dbus::asio::make_executor(core::dbus::Bus::Ptr{}, io_context));
 }
 
 TEST_F(Executor, DoesNotThrowForExistingBus)
 {
     auto bus = session_bus();
-    EXPECT_NO_THROW(bus->install_executor(core::dbus::asio::make_executor(bus, io_service)));
+    EXPECT_NO_THROW(bus->install_executor(core::dbus::asio::make_executor(bus, io_context)));
 }
 
 TEST_F(Executor, ABusRunByAnExecutorReceivesSignals)
@@ -90,7 +90,7 @@ TEST_F(Executor, ABusRunByAnExecutorReceivesSignals)
     {
         core::testing::SigTermCatcher sc;
         auto bus = session_bus();
-        bus->install_executor(dbus::asio::make_executor(bus, io_service));
+        bus->install_executor(dbus::asio::make_executor(bus, io_context));
         auto service = dbus::Service::add_service<test::Service>(bus);
         auto skeleton = service->add_object_for_path(dbus::types::ObjectPath("/this/is/unlikely/to/exist/Service"));
         skeleton->install_method_handler<test::Service::Method>(
@@ -119,7 +119,7 @@ TEST_F(Executor, ABusRunByAnExecutorReceivesSignals)
     auto client = [this, expected_value, &cross_process_sync]() -> core::posix::exit::Status
     {
         auto bus = session_bus();
-        bus->install_executor(dbus::asio::make_executor(bus, io_service));
+        bus->install_executor(dbus::asio::make_executor(bus, io_context));
         std::thread t{[bus](){bus->run();}};
         
         EXPECT_EQ(std::uint32_t(1), cross_process_sync.wait_for_signal_ready_for(std::chrono::milliseconds{500}));
@@ -158,7 +158,7 @@ TEST_F(Executor, TimeoutsAreHandledCorrectly)
         ChaosMonkey chaos_monkey;
         core::testing::SigTermCatcher sc;
         auto bus = session_bus();
-        bus->install_executor(dbus::asio::make_executor(bus, io_service));
+        bus->install_executor(dbus::asio::make_executor(bus, io_context));
         auto service = dbus::Service::add_service<test::Service>(bus);
         auto skeleton = service->add_object_for_path(dbus::types::ObjectPath("/this/is/unlikely/to/exist/Service"));
         skeleton->install_method_handler<test::Service::Method>(
@@ -195,7 +195,7 @@ TEST_F(Executor, TimeoutsAreHandledCorrectly)
     auto client = [this, expected_value, &cross_process_sync]() -> core::posix::exit::Status
     {
         auto bus = session_bus();
-        bus->install_executor(dbus::asio::make_executor(bus, io_service));
+        bus->install_executor(dbus::asio::make_executor(bus, io_context));
         std::thread t{[bus](){bus->run();}};
 
         // If you encounter failures in the client, uncomment the following two lines
@@ -267,8 +267,8 @@ TEST_F(Executor, TimeoutsAreHandledCorrectly)
 
 /*TEST(Bus, TimeoutThrowsForNullDBusWatch)
 {
-    boost::asio::io_service io_service;
-    EXPECT_ANY_THROW(core::dbus::asio::Executor::Timeout<> timeout(io_service, nullptr););
+    boost::asio::io_context io_context;
+    EXPECT_ANY_THROW(core::dbus::asio::Executor::Timeout<> timeout(io_context, nullptr););
 }
 
 namespace
@@ -295,8 +295,8 @@ struct TimeoutHelper
     }
 
     std::chrono::milliseconds timeout;
-    boost::asio::io_service reactor;
-    boost::asio::io_service::work work;
+    boost::asio::io_context reactor;
+    boost::asio::io_context::work work;
     bool invoked;
     bool enabled;
 };
@@ -470,8 +470,8 @@ struct WatchHelper
     int fd;
     std::function<void(int, WatchHelper&)> invocation_handler;
     std::vector<bool> invocation_cache;
-    boost::asio::io_service reactor;
-    boost::asio::io_service::work work;
+    boost::asio::io_context reactor;
+    boost::asio::io_context::work work;
 };
 }
 

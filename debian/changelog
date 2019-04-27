@@ -1,8 +1,8 @@
-dbus-cpp (5.0.1+gemian) stretch; urgency=medium
+dbus-cpp (5.0.2+gemian) buster; urgency=medium
 
   * Building for Gemian
 
- -- Adam Boardman <adamboardman@gmail.com>  Tue, 20 Nov 2018 20:18:45 +0000
+ -- Adam Boardman <adamboardman@gmail.com>  Sat, 27 Apr 2019 13:12:00 +0000
 
 dbus-cpp (5.0.0+18.04.20171031-0ubuntu1) bionic; urgency=medium
 
